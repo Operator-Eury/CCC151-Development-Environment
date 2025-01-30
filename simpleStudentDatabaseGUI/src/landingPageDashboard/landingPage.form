@@ -31,6 +31,7 @@
             </constraints>
             <properties>
               <focusPainted value="false"/>
+              <font size="17"/>
               <label value="I am a student"/>
               <requestFocusEnabled value="false"/>
               <rolloverEnabled value="false"/>
@@ -47,6 +48,7 @@
             <properties>
               <focusPainted value="false"/>
               <focusable value="false"/>
+              <font size="17"/>
               <label value="I am an admin"/>
               <requestFocusEnabled value="false"/>
               <rolloverEnabled value="false"/>
@@ -84,7 +86,7 @@
               <editable value="false"/>
               <enabled value="true"/>
               <focusable value="false"/>
-              <font size="17"/>
+              <font size="19" style="1"/>
               <opaque value="false"/>
               <requestFocusEnabled value="false"/>
               <text value="FrostyBytes University Student Database"/>
