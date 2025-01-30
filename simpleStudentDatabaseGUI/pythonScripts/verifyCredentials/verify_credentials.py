@@ -1,25 +1,29 @@
 import sys
 import csv
+import os
+
+# Get the directory of the script
+script_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Construct the correct path to credentials.csv
+csv_path = os.path.join(script_dir, "credentials", "credentials.csv")  # Adjust this if needed
 
 def verify_credentials(email, password):
-    with open("credentials/credentials.csv", mode="r") as file:
+    if not os.path.exists(csv_path):
+        return f"FileNotFoundError: CSV file not found at {csv_path}"
+
+    with open(csv_path, mode="r") as file:
         reader = csv.reader(file)
         next(reader)  # Skip the header row
         for row in reader:
             if row[0] == email:
-                if row[1] == password:
-                    return f"Login successful! Account Type: {row[2]}"
-                else:
-                    return "Incorrect password!"
+                return f"Login successful! Account Type: {row[2]}" if row[1] == password else "Incorrect password!"
     return "Email not found!"
 
 if __name__ == "__main__":
-    # Get email and password from the command-line arguments
     email = sys.argv[1]
     password = sys.argv[2]
 
     # Verify credentials and print the result
     result = verify_credentials(email, password)
     print(result)
-
-
