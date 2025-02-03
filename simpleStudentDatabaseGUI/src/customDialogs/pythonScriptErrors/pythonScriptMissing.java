@@ -7,8 +7,8 @@ public class pythonScriptMissing extends invalidEmailDialog {
     public pythonScriptMissing(JDialog parent) {
 
         super(parent);
-        setTitle("An empty void tries to be within me");
-        messageField.setText("Whoa~ there! Check your password. Such a barren place.");
+        setTitle("Python Script Does not Exist");
+        messageField.setText("There seems to be an error in locating the script.");
 
     }
 }

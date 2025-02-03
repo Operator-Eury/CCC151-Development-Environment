@@ -9,6 +9,7 @@ public class pythonErrorDialog extends invalidEmailDialog {
         super(parent);
         setTitle(title);
         messageArea.setText(message);
+        messageAreaScrollPanel.setVisible(true);
         messageArea.setVisible(true);
         messageFieldPanel.setVisible(false);
         messageFieldPanel.revalidate();

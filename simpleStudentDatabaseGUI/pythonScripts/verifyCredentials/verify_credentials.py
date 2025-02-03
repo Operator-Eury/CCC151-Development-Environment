@@ -6,7 +6,7 @@ import os
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Construct the correct path to credentials.csv
-csv_path = os.path.join(script_dir, "credentials", "credentials.csv")  # Adjust this if needed
+csv_path = os.path.join(script_dir, "credentials", "credentials.csv")
 
 def verify_credentials(email, password):
     if not os.path.exists(csv_path):

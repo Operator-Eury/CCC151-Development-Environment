@@ -63,7 +63,7 @@ public class signInFormHandler extends JDialog {
                 // Get the current working directory where the executable or JAR is running
                 String projectDir = System.getProperty("user.dir");
 
-                // Build the absolute path to the Python script, assuming it's in a "resources" folder
+                // Build the absolute path to the Python script
                 String pythonScriptPath = projectDir + File.separator + "pythonScripts" + File.separator + "verifyCredentials" + File.separator + "verify_credentials.py";
 
                 // Verify the file exists at the calculated path
@@ -149,7 +149,8 @@ public class signInFormHandler extends JDialog {
                 } catch (IOException error) {
                     SwingUtilities.invokeLater(new Runnable() {
                         public void run() {
-                            showErrorDialog(frame, "An error occurred while reading the Python script output.", "Reading Error");
+                            pythonReadingError pythonReadingError = new pythonReadingError(signInFormHandler.this);
+                            pythonReadingError.setVisible(true);
                         }
                     });
                     error.printStackTrace();

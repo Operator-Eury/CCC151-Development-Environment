@@ -125,6 +125,7 @@ public class invalidEmailDialog extends JDialog {
         messageAreaScrollPanel.setMinimumSize(new Dimension(14, 150));
         messageAreaScrollPanel.setOpaque(false);
         messageAreaScrollPanel.setRequestFocusEnabled(false);
+        messageAreaScrollPanel.setVisible(false);
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
