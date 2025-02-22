@@ -6,5 +6,5 @@
 Welcome to this Demo GUI for a simple student database stored in CSV Files.
 
 > Login Page exists but isn't used until further development
-> An attempt to Modular and Maintainable approach except in adminPanelDashboard.java where there are many reused (copy pasted) code that could be refactored into functions or classes
+> /nAn attempt to Modular and Maintainable approach except in adminPanelDashboard.java where there are many reused (copy pasted) code that could be refactored into functions or classes
 > 
