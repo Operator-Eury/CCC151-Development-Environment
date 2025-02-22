@@ -3,7 +3,7 @@ import csv
 import json
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-csv_path = os.path.join(script_dir, "students", "students.csv")
+csv_path = os.path.join(script_dir, "programs", "programs.csv")
 
 def read_csv():
     rows = []

@@ -22,7 +22,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="a312e" class="javax.swing.JButton" binding="studentAccessorButton">
+          <component id="a312e" class="javax.swing.JButton" binding="AccessorButton">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
                 <maximum-size width="250" height="-1"/>
@@ -33,28 +33,10 @@
               <focusPainted value="false"/>
               <font size="17"/>
               <horizontalTextPosition value="11"/>
-              <label value="I am a student"/>
+              <label value="Let's get started"/>
               <requestFocusEnabled value="false"/>
               <rolloverEnabled value="false"/>
-              <text value="I am a student"/>
-              <verifyInputWhenFocusTarget value="false"/>
-            </properties>
-          </component>
-          <component id="4e370" class="javax.swing.JButton" binding="adminAccessorButton">
-            <constraints>
-              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
-                <maximum-size width="250" height="-1"/>
-              </grid>
-              <gridbag weightx="1.0" weighty="0.0"/>
-            </constraints>
-            <properties>
-              <focusPainted value="false"/>
-              <focusable value="false"/>
-              <font size="17"/>
-              <label value="I am an admin"/>
-              <requestFocusEnabled value="false"/>
-              <rolloverEnabled value="false"/>
-              <text value="I am an admin"/>
+              <text value="Let's get started"/>
               <verifyInputWhenFocusTarget value="false"/>
             </properties>
           </component>
@@ -89,7 +71,7 @@
               <editable value="false"/>
               <enabled value="true"/>
               <focusable value="false"/>
-              <font size="19" style="1"/>
+              <font size="20"/>
               <opaque value="false"/>
               <requestFocusEnabled value="false"/>
               <text value="FrostyBytes University Student Database"/>

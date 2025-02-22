@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="signInForm.signInFormHandler">
   <grid id="27dc6" binding="signInFormDashboard" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="37" y="21" width="681" height="332"/>
+      <xy x="37" y="21" width="707" height="332"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -10,7 +10,7 @@
       <grid id="a0218" layout-manager="GridBagLayout">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="4" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="1.0" weighty="0.0"/>
+          <gridbag weightx="1.0" weighty="1.0"/>
         </constraints>
         <properties/>
         <border type="none"/>
@@ -91,7 +91,7 @@
         <children>
           <component id="a1cc1" class="javax.swing.JTextArea" binding="signUpPrompt">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="1" fill="1" indent="0" use-parent-layout="false">
+              <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="1" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="25"/>
               </grid>
               <gridbag top="2" left="5" bottom="0" right="0" weightx="1.0" weighty="1.0"/>
@@ -107,42 +107,44 @@
               <verifyInputWhenFocusTarget value="false"/>
             </properties>
           </component>
-          <component id="f3cf3" class="javax.swing.JButton" binding="signUpAsStudentButton">
+          <component id="c49a0" class="javax.swing.JButton" binding="signUp">
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="2" fill="0" indent="0" use-parent-layout="false"/>
-              <gridbag top="0" left="0" bottom="10" right="0" weightx="1.0" weighty="1.0"/>
+              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="2" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag top="0" left="0" bottom="10" right="0" weightx="0.0" weighty="0.0"/>
             </constraints>
             <properties>
               <focusPainted value="false"/>
-              <text value="Sign Up as Student"/>
+              <text value="Sign Up"/>
             </properties>
           </component>
-          <component id="c49a0" class="javax.swing.JButton" binding="signUpAsAdminButton" default-binding="true">
+          <hspacer id="144c0">
             <constraints>
-              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="2" fill="0" indent="0" use-parent-layout="false"/>
-              <gridbag top="0" left="0" bottom="10" right="0" weightx="1.0" weighty="1.0"/>
+              <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.1" weighty="1.0"/>
             </constraints>
-            <properties>
-              <focusPainted value="false"/>
-              <text value="Sign Up as Admin"/>
-            </properties>
-          </component>
+          </hspacer>
+          <hspacer id="e7c26">
+            <constraints>
+              <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+          </hspacer>
         </children>
       </grid>
-      <grid id="8574" layout-manager="GridBagLayout">
+      <grid id="8574" binding="signIn" layout-manager="GridBagLayout">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="1.0" weighty="0.0"/>
+          <grid row="1" column="0" row-span="1" col-span="4" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="1.0" weighty="1.0"/>
         </constraints>
         <properties/>
         <border type="none"/>
         <children>
           <component id="65a0" class="javax.swing.JButton" binding="signInButton">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="6" fill="0" indent="1" use-parent-layout="false">
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="2" fill="1" indent="1" use-parent-layout="false">
                 <minimum-size width="75" height="17"/>
               </grid>
-              <gridbag top="5" left="0" bottom="0" right="15" weightx="1.0" weighty="1.0"/>
+              <gridbag top="5" left="0" bottom="0" right="15" weightx="0.0" weighty="0.0"/>
             </constraints>
             <properties>
               <alignmentX value="0.5"/>
@@ -150,13 +152,19 @@
               <focusable value="true"/>
               <label value="Sign In"/>
               <margin top="0" left="0" bottom="0" right="0"/>
-              <maximumSize width="-1" height="34"/>
-              <minimumSize width="-1" height="-1"/>
-              <preferredSize width="55" height="24"/>
+              <maximumSize width="83" height="34"/>
+              <minimumSize width="83" height="34"/>
+              <preferredSize width="83" height="24"/>
               <text value="Sign In"/>
               <verticalAlignment value="0"/>
             </properties>
           </component>
+          <hspacer id="58245">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.1" weighty="0.0"/>
+            </constraints>
+          </hspacer>
         </children>
       </grid>
     </children>

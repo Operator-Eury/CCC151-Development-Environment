@@ -5,10 +5,14 @@ import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.*;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.*;
+
+import adminPanel.adminPanelDashboard;
 import customDialogs.invalidEmailDialog.*;
 import customDialogs.emptyEmailDialog.*;
 import customDialogs.emptyPasswordDialog.*;
@@ -20,10 +24,10 @@ public class signInFormHandler extends JDialog {
     private JTextField emailInputArea;
     private JTextArea passwordForm;
     private JTextArea signUpPrompt;
-    private JButton signUpAsStudentButton;
-    private JButton signUpAsAdminButton;
+    private JButton signUp;
     private JPasswordField passwordInputField;
     private JButton signInButton;
+    protected JPanel signIn;
 
     public signInFormHandler(JFrame parent) {
         super(parent, "Welcome Back, FrostScribe!", true);
@@ -137,14 +141,31 @@ public class signInFormHandler extends JDialog {
                             public void run() {
                                 pythonVerificationResult pythonVerificationResult = new pythonVerificationResult(signInFormHandler.this, " " + output.toString());
                                 pythonVerificationResult.setVisible(true);
+
+                                pythonVerificationResult.addWindowListener(new WindowAdapter() {
+                                    @Override
+                                    public void windowClosed(WindowEvent windowEvent) {
+                                        if (output.toString().contains("Login successful! Account Type:")) {
+                                            signInFormHandler.this.dispose();
+                                            parent.setVisible(false);
+
+                                            if (output.toString().contains("Account Type: Admin")) {
+                                                SwingUtilities.invokeLater(new Runnable() {
+                                                    public void run() {
+                                                        adminPanelDashboard adminPanelDashboard = new adminPanelDashboard();
+                                                        adminPanelDashboard.setVisible(true);
+                                                        adminPanelDashboard.toFront();
+                                                        adminPanelDashboard.requestFocus();
+                                                    }
+                                                });
+                                            }
+                                        }
+                                    }
+                                });
                             }
                         });
-
-                        if (output.toString().contains("Login successful! Account Type:")) {
-                                    signInFormHandler.this.dispose();
-
-                        }
                     }
+
 
                 } catch (IOException error) {
                     SwingUtilities.invokeLater(new Runnable() {
@@ -194,6 +215,7 @@ public class signInFormHandler extends JDialog {
         gbc.gridy = 0;
         gbc.gridwidth = 4;
         gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
         gbc.anchor = GridBagConstraints.NORTH;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         signInFormDashboard.add(panel1, gbc);
@@ -288,62 +310,72 @@ public class signInFormHandler extends JDialog {
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.gridwidth = 2;
+        gbc.gridwidth = 3;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         gbc.anchor = GridBagConstraints.NORTH;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(2, 5, 0, 0);
         panel2.add(signUpPrompt, gbc);
-        signUpAsStudentButton = new JButton();
-        signUpAsStudentButton.setFocusPainted(false);
-        signUpAsStudentButton.setText("Sign Up as Student");
+        signUp = new JButton();
+        signUp.setFocusPainted(false);
+        signUp.setText("Sign Up");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 2;
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.SOUTH;
+        gbc.insets = new Insets(0, 0, 10, 0);
+        panel2.add(signUp, gbc);
+        final JPanel spacer1 = new JPanel();
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 1;
-        gbc.weightx = 1.0;
+        gbc.gridwidth = 2;
+        gbc.weightx = 0.1;
         gbc.weighty = 1.0;
-        gbc.anchor = GridBagConstraints.SOUTH;
-        gbc.insets = new Insets(0, 0, 10, 0);
-        panel2.add(signUpAsStudentButton, gbc);
-        signUpAsAdminButton = new JButton();
-        signUpAsAdminButton.setFocusPainted(false);
-        signUpAsAdminButton.setText("Sign Up as Admin");
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel2.add(spacer1, gbc);
+        final JPanel spacer2 = new JPanel();
         gbc = new GridBagConstraints();
-        gbc.gridx = 1;
+        gbc.gridx = 3;
         gbc.gridy = 1;
-        gbc.weightx = 1.0;
-        gbc.weighty = 1.0;
-        gbc.anchor = GridBagConstraints.SOUTH;
-        gbc.insets = new Insets(0, 0, 10, 0);
-        panel2.add(signUpAsAdminButton, gbc);
-        final JPanel panel3 = new JPanel();
-        panel3.setLayout(new GridBagLayout());
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel2.add(spacer2, gbc);
+        signIn = new JPanel();
+        signIn.setLayout(new GridBagLayout());
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 1;
+        gbc.gridwidth = 4;
         gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.BOTH;
-        signInFormDashboard.add(panel3, gbc);
+        signInFormDashboard.add(signIn, gbc);
         signInButton = new JButton();
         signInButton.setAlignmentX(0.5f);
         signInButton.setFocusPainted(false);
         signInButton.setFocusable(true);
         signInButton.setLabel("Sign In");
         signInButton.setMargin(new Insets(0, 0, 0, 0));
-        signInButton.setMaximumSize(new Dimension(-1, 34));
-        signInButton.setMinimumSize(new Dimension(-1, -1));
-        signInButton.setPreferredSize(new Dimension(55, 24));
+        signInButton.setMaximumSize(new Dimension(83, 34));
+        signInButton.setMinimumSize(new Dimension(83, 34));
+        signInButton.setPreferredSize(new Dimension(83, 24));
         signInButton.setText("Sign In");
         signInButton.setVerticalAlignment(0);
         gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.SOUTH;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 0, 0, 15);
+        signIn.add(signInButton, gbc);
+        final JPanel spacer3 = new JPanel();
+        gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.weightx = 1.0;
-        gbc.weighty = 1.0;
-        gbc.anchor = GridBagConstraints.SOUTHEAST;
-        gbc.insets = new Insets(5, 0, 0, 15);
-        panel3.add(signInButton, gbc);
+        gbc.weightx = 0.1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        signIn.add(spacer3, gbc);
     }
 
     /**

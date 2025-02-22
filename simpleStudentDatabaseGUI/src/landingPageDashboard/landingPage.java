@@ -11,8 +11,7 @@ import java.util.Locale;
 public class landingPage extends JFrame {
     private JPanel landingPagePanel;
     private JTextArea welcomeMessage;
-    private JButton studentAccessorButton;
-    private JButton adminAccessorButton;
+    private JButton AccessorButton;
     private JPanel accessorButtonsPanel;
     private JPanel divPanel;
     private JPanel welcomeMessagePanel;
@@ -28,18 +27,10 @@ public class landingPage extends JFrame {
         pack();
         setLocationRelativeTo(null);
 
-        studentAccessorButton.addActionListener(new ActionListener() {
+        AccessorButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 signInFormHandler signInFormHandler = new signInFormHandler(landingPage.this); //creating a JDialog object
-                signInFormHandler.setVisible(true);
-            }
-        });
-
-        adminAccessorButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                signInFormHandler signInFormHandler = new signInFormHandler(landingPage.this);
                 signInFormHandler.setVisible(true);
             }
         });
@@ -79,36 +70,21 @@ public class landingPage extends JFrame {
         gbc.fill = GridBagConstraints.BOTH;
         gbc.insets = new Insets(0, 0, 10, 0);
         landingPagePanel.add(accessorButtonsPanel, gbc);
-        studentAccessorButton = new JButton();
-        studentAccessorButton.setFocusPainted(false);
-        Font studentAccessorButtonFont = this.$$$getFont$$$(null, -1, 17, studentAccessorButton.getFont());
-        if (studentAccessorButtonFont != null) studentAccessorButton.setFont(studentAccessorButtonFont);
-        studentAccessorButton.setHorizontalTextPosition(11);
-        studentAccessorButton.setLabel("I am a student");
-        studentAccessorButton.setRequestFocusEnabled(false);
-        studentAccessorButton.setRolloverEnabled(false);
-        studentAccessorButton.setText("I am a student");
-        studentAccessorButton.setVerifyInputWhenFocusTarget(false);
+        AccessorButton = new JButton();
+        AccessorButton.setFocusPainted(false);
+        Font AccessorButtonFont = this.$$$getFont$$$(null, -1, 17, AccessorButton.getFont());
+        if (AccessorButtonFont != null) AccessorButton.setFont(AccessorButtonFont);
+        AccessorButton.setHorizontalTextPosition(11);
+        AccessorButton.setLabel("Let's get started");
+        AccessorButton.setRequestFocusEnabled(false);
+        AccessorButton.setRolloverEnabled(false);
+        AccessorButton.setText("Let's get started");
+        AccessorButton.setVerifyInputWhenFocusTarget(false);
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.weightx = 1.0;
-        accessorButtonsPanel.add(studentAccessorButton, gbc);
-        adminAccessorButton = new JButton();
-        adminAccessorButton.setFocusPainted(false);
-        adminAccessorButton.setFocusable(false);
-        Font adminAccessorButtonFont = this.$$$getFont$$$(null, -1, 17, adminAccessorButton.getFont());
-        if (adminAccessorButtonFont != null) adminAccessorButton.setFont(adminAccessorButtonFont);
-        adminAccessorButton.setLabel("I am an admin");
-        adminAccessorButton.setRequestFocusEnabled(false);
-        adminAccessorButton.setRolloverEnabled(false);
-        adminAccessorButton.setText("I am an admin");
-        adminAccessorButton.setVerifyInputWhenFocusTarget(false);
-        gbc = new GridBagConstraints();
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-        gbc.weightx = 1.0;
-        accessorButtonsPanel.add(adminAccessorButton, gbc);
+        accessorButtonsPanel.add(AccessorButton, gbc);
         divPanel = new JPanel();
         divPanel.setLayout(new GridBagLayout());
         gbc = new GridBagConstraints();
@@ -135,7 +111,7 @@ public class landingPage extends JFrame {
         welcomeMessage.setEditable(false);
         welcomeMessage.setEnabled(true);
         welcomeMessage.setFocusable(false);
-        Font welcomeMessageFont = this.$$$getFont$$$(null, Font.BOLD, 19, welcomeMessage.getFont());
+        Font welcomeMessageFont = this.$$$getFont$$$(null, -1, 20, welcomeMessage.getFont());
         if (welcomeMessageFont != null) welcomeMessage.setFont(welcomeMessageFont);
         welcomeMessage.setOpaque(false);
         welcomeMessage.setRequestFocusEnabled(false);

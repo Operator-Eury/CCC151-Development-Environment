@@ -18,8 +18,8 @@ public class invalidEmailDialog extends JDialog {
 
     public invalidEmailDialog(JDialog parent) {
         super(parent, "Please put an actual Email!", true);
-        setResizable(false);
-        setMinimumSize(new Dimension(350, 225));
+        setResizable(true);
+        setMinimumSize(new Dimension(500, 225));
         messageArea.setLineWrap(true);
         messageArea.setWrapStyleWord(true);
         setContentPane(parentPanel);
