@@ -7,5 +7,10 @@ public class pythonVerificationResult extends invalidEmailDialog{
         super(parent);
         setTitle("Verification Result");
         messageField.setText(message);
+        if (message.contains("Incorrect")) {
+            confirmButton.setText("Imma retry again");
+        } else {
+            confirmButton.setText("Yippee!");
+        }
     }
 }
