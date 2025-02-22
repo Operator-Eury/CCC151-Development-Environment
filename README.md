@@ -6,8 +6,8 @@
 ### **Overview**  
 This is a **demo GUI application** for managing a simple **student database** stored in **CSV files**.
 
-> **Note:** The **Login Page** exists but is not yet functional until further development.
-> Uses Java's **Look and Feel.**  
+> **Note:** The **Login Page** exists but is not yet functional until further development.<br>
+>  Uses Java's **Look and Feel.**  
 > The project attempts a **modular and maintainable approach** by structuring the codebase into reusable components.  
 > However, `adminPanelDashboard.java` currently contains **many reused (copy-pasted) code blocks**, which can make maintenance difficult.  
 > - These redundant code sections could be **refactored into reusable functions or separate classes**.  
