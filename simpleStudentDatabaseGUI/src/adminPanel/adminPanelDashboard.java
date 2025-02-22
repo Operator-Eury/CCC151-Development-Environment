@@ -221,27 +221,40 @@ public class adminPanelDashboard extends JFrame {
         });
 
         confirmEnrollmentButton.addActionListener(new enrollActionListenerClass(this, studentDataTable, idNumberValue, firstNameTextField, middleNameTextField, lastNameTextField, genderComboBox, yearLevelComboBox, programCodeComboBox, collegeCodeComboBox));
-
         updateFormButton.addActionListener(e -> {
-            String idNumber = updateIDNumberTextField.getText().trim();
-            String firstName = updateFirstNameField.getText().trim();
-            String middleName = updateMiddleNameTextField.getText().trim();
-            String lastName = updateLastNameTextField.getText().trim();
-            String gender = (String) updateGenderComboBox.getSelectedItem();
-            String yearLevel = (String) updateYearLevelCombo.getSelectedItem();
-            String programCode = (String) updateProgramCodeCombo.getSelectedItem();
-            String collegeCode = (String) updateCollegeCodeComboBox.getSelectedItem();
-            if (idNumber.isEmpty() || idNumber.isBlank()) {
-                checkEnrollmentForm checkEnrollmentForm = new checkEnrollmentForm(null, "select id");
-                checkEnrollmentForm.setVisible(true);
-                return;
-            }
 
-            updater = new updateStudentClass(studentDataTable, enrollActionListener,
-                    updateIDNumberTextField, updateFirstNameField, updateMiddleNameTextField,
-                    updateLastNameTextField, updateGenderComboBox, updateYearLevelCombo, updateProgramCodeCombo, updateCollegeCodeComboBox);
+            int confirm = JOptionPane.showOptionDialog(
+                    null,
+                    "Are you sure you want to update this student?",
+                    "Confirm Update",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE, // Use WARNING for better UX
+                    null, // No custom icon
+                    new Object[]{"Yes", "No"}, // Button labels
+                    "No" // Default selection
+            );
 
-            updater.updateStudent(idNumber, firstName, middleName, lastName, gender, yearLevel, programCode);
+            if (confirm == JOptionPane.YES_OPTION) {
+
+                String idNumber = updateIDNumberTextField.getText().trim();
+                String firstName = updateFirstNameField.getText().trim();
+                String middleName = updateMiddleNameTextField.getText().trim();
+                String lastName = updateLastNameTextField.getText().trim();
+                String gender = (String) updateGenderComboBox.getSelectedItem();
+                String yearLevel = (String) updateYearLevelCombo.getSelectedItem();
+                String programCode = (String) updateProgramCodeCombo.getSelectedItem();
+                String collegeCode = (String) updateCollegeCodeComboBox.getSelectedItem();
+                if (idNumber.isEmpty() || idNumber.isBlank()) {
+                    checkEnrollmentForm checkEnrollmentForm = new checkEnrollmentForm(null, "select id");
+                    checkEnrollmentForm.setVisible(true);
+                    return;
+                }
+
+                updater = new updateStudentClass(studentDataTable, enrollActionListener,
+                        updateIDNumberTextField, updateFirstNameField, updateMiddleNameTextField,
+                        updateLastNameTextField, updateGenderComboBox, updateYearLevelCombo, updateProgramCodeCombo, updateCollegeCodeComboBox);
+
+                updater.updateStudent(idNumber, firstName, middleName, lastName, gender, yearLevel, programCode);
 
 
 //            updateIDNumberTextField.setText("");
@@ -252,6 +265,7 @@ public class adminPanelDashboard extends JFrame {
 //            updateYearLevelCombo.setSelectedIndex(0);
 //            updateProgramCodeCombo.setSelectedIndex(0);
 
+            }
         });
 
         updateInformation.addActionListener(new ActionListener() {
@@ -1219,6 +1233,19 @@ public class adminPanelDashboard extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                int confirm = JOptionPane.showOptionDialog(
+                        null,
+                        "Are you really sure to proceed with the deletion?",
+                        "Confirm Deletion",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.WARNING_MESSAGE, // Use WARNING for better UX
+                        null, // No custom icon
+                        new Object[]{"Yes", "No"}, // Button labels
+                        "No" // Default selection
+                );
+
+                if (confirm == JOptionPane.YES_OPTION) {
+
                 if (deleteHandlerButton.getText().trim().equals("Delete College")) {
 
                     String selectedCode = updateField.getText().trim().toUpperCase();
@@ -1456,6 +1483,7 @@ public class adminPanelDashboard extends JFrame {
 
                 }
             }
+        }
         });
 
         searchHandler.getDocument().addDocumentListener(new DocumentListener() {

@@ -40,50 +40,64 @@ public class enrollActionListenerClass implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        try {
-            studentValidator.validateStudentData(
-                    idNumberValue.getText().trim(),
-                    firstNameTextField.getText().trim(),
-                    middleNameTextField.getText().trim(),
-                    lastNameTextField.getText().trim(),
-                    genderComboBox.getSelectedItem().toString().trim(),
-                    yearLevelComboBox.getSelectedItem().toString().trim(),
-                    programCodeComboBox.getSelectedItem().toString().trim(),
-                    studentDataTable,
-                    false // false = Enrollment (checks for duplicate ID)
-            );
-        } catch (studentValidator.ValidationException error) {
-            checkEnrollmentForm checkEnrollmentForm = new checkEnrollmentForm(null, error.getMessage());
+        int confirm = JOptionPane.showOptionDialog(
+                null,
+                "Are you sure you want to enroll this student?",
+                "Confirm Enrollment",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE, // Use WARNING for better UX
+                null, // No custom icon
+                new Object[]{"Yes", "No"}, // Button labels
+                "No" // Default selection
+        );
+
+        if (confirm == JOptionPane.YES_OPTION) {
+
+            try {
+                studentValidator.validateStudentData(
+                        idNumberValue.getText().trim(),
+                        firstNameTextField.getText().trim(),
+                        middleNameTextField.getText().trim(),
+                        lastNameTextField.getText().trim(),
+                        genderComboBox.getSelectedItem().toString().trim(),
+                        yearLevelComboBox.getSelectedItem().toString().trim(),
+                        programCodeComboBox.getSelectedItem().toString().trim(),
+                        studentDataTable,
+                        false // false = Enrollment (checks for duplicate ID)
+                );
+            } catch (studentValidator.ValidationException error) {
+                checkEnrollmentForm checkEnrollmentForm = new checkEnrollmentForm(null, error.getMessage());
+                checkEnrollmentForm.setVisible(true);
+                return; // Stop execution if validation fails
+            }
+
+            checkEnrollmentForm checkEnrollmentForm = new checkEnrollmentForm(null, "");
             checkEnrollmentForm.setVisible(true);
-            return; // Stop execution if validation fails
+
+
+            String idNumber = idNumberValue.getText().trim();
+            String firstName = firstNameTextField.getText().trim();
+            String middleName = middleNameTextField.getText().trim();
+            String lastName = lastNameTextField.getText().trim();
+            String gender = genderComboBox.getSelectedItem().toString().trim();
+            String yearLevel = yearLevelComboBox.getSelectedItem().toString().trim();
+            String programCode = programCodeComboBox.getSelectedItem().toString().trim();
+
+            DefaultTableModel tableModel = (DefaultTableModel) studentDataTable.getModel();
+            tableModel.addRow(new Object[]{idNumber, lastName, firstName, middleName, yearLevel, gender, programCode});
+
+            // Optional: Clear fields after adding
+            idNumberValue.setText("");
+            firstNameTextField.setText("");
+            middleNameTextField.setText("");
+            lastNameTextField.setText("");
+            genderComboBox.setSelectedIndex(0);
+            yearLevelComboBox.setSelectedIndex(0);
+            programCodeComboBox.setSelectedIndex(0);
+            collegeCodeComboBox.setSelectedIndex(0);
+
+            proceedToSave();
         }
-
-        checkEnrollmentForm checkEnrollmentForm = new checkEnrollmentForm(null, "");
-        checkEnrollmentForm.setVisible(true);
-
-
-        String idNumber = idNumberValue.getText().trim();
-        String firstName = firstNameTextField.getText().trim();
-        String middleName = middleNameTextField.getText().trim();
-        String lastName = lastNameTextField.getText().trim();
-        String gender = genderComboBox.getSelectedItem().toString().trim();
-        String yearLevel = yearLevelComboBox.getSelectedItem().toString().trim();
-        String programCode = programCodeComboBox.getSelectedItem().toString().trim();
-
-        DefaultTableModel tableModel = (DefaultTableModel) studentDataTable.getModel();
-        tableModel.addRow(new Object[]{idNumber, lastName, firstName, middleName, yearLevel, gender, programCode});
-
-        // Optional: Clear fields after adding
-        idNumberValue.setText("");
-        firstNameTextField.setText("");
-        middleNameTextField.setText("");
-        lastNameTextField.setText("");
-        genderComboBox.setSelectedIndex(0);
-        yearLevelComboBox.setSelectedIndex(0);
-        programCodeComboBox.setSelectedIndex(0);
-        collegeCodeComboBox.setSelectedIndex(0);
-
-        proceedToSave();
     }
 
     public  void proceedToSave(){

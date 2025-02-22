@@ -47,10 +47,11 @@ public class studentValidator {
             throw new ValidationException("Program Code");
         }
 
-        // Check for duplicate Name (Last Name, First Name, Middle Initial)
-        if (isNameDuplicate(firstName, middleName, lastName, studentDataTable)) {
+        // Check for duplicate Name only when adding a new student
+        if (!isUpdate && isNameDuplicate(firstName, middleName, lastName, studentDataTable)) {
             throw new ValidationException("A student already exists");
         }
+
 
     }
 
