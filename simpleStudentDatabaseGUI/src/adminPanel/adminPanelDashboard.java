@@ -631,6 +631,7 @@ public class adminPanelDashboard extends JFrame {
         proposeCourseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                tableHandlerJTable.setRowSorter(null); // Reset sorter
                 invisiblePane.setVisible(true);
 
                 collegePane.setVisible(true);
@@ -676,6 +677,7 @@ public class adminPanelDashboard extends JFrame {
         registerNewCollege.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                tableHandlerJTable.setRowSorter(null); // Reset sorter
                 invisiblePane.setVisible(true);
                 collegePane.setVisible(false);
                 collegeComboBox.setVisible(false);
@@ -1552,6 +1554,61 @@ public class adminPanelDashboard extends JFrame {
                 }
             }
         });
+
+        updateField.getDocument().addDocumentListener(new DocumentListener() {
+            private void filterTable() {
+                String query = updateField.getText().trim();
+                TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>((DefaultTableModel) tableHandlerJTable.getModel());
+                tableHandlerJTable.setRowSorter(sorter);
+
+                if (query.isEmpty()) {
+                    sorter.setRowFilter(null); // Show all rows if the search field is empty
+                    handlerField1.setText("");
+                    handlerField2.setText("");
+                    handlerFound.setText("");
+                } else {
+                    sorter.setRowFilter(RowFilter.regexFilter("(?i)" + query)); // Case-insensitive search
+
+                    // Retrieve first matching row's data
+                    if (tableHandlerJTable.getRowCount() > 0) {
+                        int rowIndex = tableHandlerJTable.convertRowIndexToModel(0); // Get the first visible row index
+                        DefaultTableModel model = (DefaultTableModel) tableHandlerJTable.getModel();
+
+                        String name = model.getValueAt(rowIndex, 1).toString(); // Assuming Name is in column 0
+                        String code = model.getValueAt(rowIndex, 0).toString(); // Assuming Code is in column 1
+
+                        handlerField1.setText(name); // Set name field
+                        handlerField2.setText(code); // Set code field
+                    } else {
+                        handlerField1.setText("");
+                        handlerField2.setText("");
+                    }
+
+                    // Update label count based on what is being searched
+                    if (registerHandlerButton.getText().equals("Register College")) {
+                        handlerFound.setText("Colleges found: " + tableHandlerJTable.getRowCount());
+                    } else if (registerHandlerButton.getText().equals("Register Program")) {
+                        handlerFound.setText("Programs found: " + tableHandlerJTable.getRowCount());
+                    }
+                }
+            }
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                filterTable();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                filterTable();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                filterTable();
+            }
+        });
+
     }
 
     public void updateSorting() {
